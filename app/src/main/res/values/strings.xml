@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MyWeatherApp</string>
+    <string name="select_city">Select city</string>
+
+    <string-array name="city_names">
+        <item>Gothenburg</item>
+        <item>Stockholm</item>
+        <item>London</item>
+        <item>New York</item>
+        <item>Mountain View</item>
+        <item>Berlin</item>
+    </string-array>
+
+    <string name="forecast_date">Forecast date: </string>
+
+    <string name="date_format">yyyy/MM/dd</string>
+
+</resources>

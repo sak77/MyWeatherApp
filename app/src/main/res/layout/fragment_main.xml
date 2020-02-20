@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/fragment_weather_padding"
+    tools:context=".ui.MainFragment">
+
+    <TextView
+        android:id="@+id/txtDetailForecastDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/forecast_date"
+        android:textSize="@dimen/forecast_date_text_size"
+        android:textStyle="bold"/>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/main_title_divider_color"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="@dimen/progessbar_size"
+            android:layout_height="@dimen/progessbar_size"
+            android:layout_gravity="center"
+            android:visibility="invisible"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtError"
+            android:layout_gravity="center"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recCityWeather"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+</LinearLayout>

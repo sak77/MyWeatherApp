@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="fragment_weather_padding">8dp</dimen>
+    <dimen name="forecast_date_text_size">18sp</dimen>
+
+    <dimen name="weather_item_padding">2dp</dimen>
+    <dimen name="layout_weather_item_height">80dp</dimen>
+    <dimen name="weather_state_margin_top">20dp</dimen>
+    <dimen name="weather_state_margin_bottom">10dp</dimen>
+    <dimen name="max_temp_margin_end">8dp</dimen>
+    <dimen name="weather_item_divider_height">2dp</dimen>
+
+    <dimen name="weather_icon_size">176dp</dimen>
+    <dimen name="weather_icon_margin_top">64dp</dimen>
+    <dimen name="progessbar_size">40dp</dimen>
+
+</resources>
