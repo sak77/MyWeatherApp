@@ -8,10 +8,10 @@ import java.util.Date;
  * Created by sshriwas on 2020-02-16
  * Simple class to hold date util methods
  */
-public class DateUtils {
+public class CustomDateUtils {
 
     String mExpectedFormat;
-    public DateUtils(String expectedFormat) {
+    public CustomDateUtils(String expectedFormat) {
         mExpectedFormat = expectedFormat;
     }
 

@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements
         loadMainFragment();
     }
 
+    /*
+    This code does not have to be in a separte method here...its not being used anywhere else..
+     */
     private void loadMainFragment() {
         MainFragment mainFragment = MainFragment.newInstance("", "");
         getSupportFragmentManager().addOnBackStackChangedListener(this);
@@ -44,9 +47,15 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onBackStackChanged() {
         //Display back button if back stack has one ore more items
+        /*
+        Toolbar is upgraded version of actionbar. Provides better support for handling navigation. Use toolbar instead.
+         */
         getSupportActionBar()
                 .setDisplayHomeAsUpEnabled(
                         getSupportFragmentManager().getBackStackEntryCount() > 0);
+        /*
+        This approach to handle data in mainfragment is wrong.
+         */
         if (getSupportFragmentManager().getBackStackEntryCount()> 0) {
             MainFragment.MAIN_EXISTS = true;
         }

@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * retrofit class. addCallAdapterFactory allows rertrofit to return rxjava2 observables instead
  * of default Call instance.
  */
-public class MetaWeatherClient {
+public class MetaWeatherClient_old {
     public static String BASE_URL = "https://www.metaweather.com/";
 
     private static Retrofit retrofit = null;

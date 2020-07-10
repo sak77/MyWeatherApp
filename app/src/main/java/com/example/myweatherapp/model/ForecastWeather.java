@@ -6,6 +6,10 @@ import android.os.Parcelable;
 import com.example.myweatherapp.network.MetaWeatherClient;
 import com.google.gson.annotations.SerializedName;
 
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 /**
  * Created by sshriwas on 2020-02-16
  * Class stores info about weather of future date (e.g. tomorrow)
@@ -106,7 +110,21 @@ public class ForecastWeather implements Parcelable {
                 + this.weatherStateAbbr + ".png";
         return icon_url;
     }
+    public static String BASE_URL = "https://www.metaweather.com/";
 
+    private static Retrofit retrofit = null;
+
+    public static Retrofit getRetrofit(){
+        if(retrofit == null){
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    //.addConverterFactory(createGsonConverter())
+                    .build();
+        }
+        return retrofit;
+    }
     public void setIconUri(String iconUri) {
         this.iconUri = iconUri;
     }

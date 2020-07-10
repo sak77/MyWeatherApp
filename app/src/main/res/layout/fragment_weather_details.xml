@@ -11,7 +11,7 @@
 
         <variable
             name="date_utils"
-            type="com.example.myweatherapp.utils.DateUtils" />
+            type="com.example.myweatherapp.utils.CustomDateUtils" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

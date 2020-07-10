@@ -3,7 +3,6 @@ package com.example.myweatherapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myweatherapp.network.MetaWeatherClient;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -180,10 +179,10 @@ public class CityWeather implements Parcelable {
             this.weatherStateAbbr = weatherStateAbbr;
         }
 
-        public String getIconUri() {
+/*        public String getIconUri() {
             String icon_url = MetaWeatherClient.BASE_URL + "/static/img/weather/png/64/"
                     + this.weatherStateAbbr + ".png";
             return icon_url;
-        }
+        }*/
     }
 }

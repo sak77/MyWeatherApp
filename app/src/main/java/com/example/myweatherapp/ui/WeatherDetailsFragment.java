@@ -2,6 +2,7 @@ package com.example.myweatherapp.ui;
 
 
 import android.os.Bundle;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myweatherapp.R;
 import com.example.myweatherapp.databinding.FragmentWeatherDetailsBinding;
 import com.example.myweatherapp.model.ForecastWeather;
-import com.example.myweatherapp.utils.DateUtils;
+import com.example.myweatherapp.utils.CustomDateUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +23,10 @@ import com.squareup.picasso.Picasso;
  * A simple {@link Fragment} subclass.
  * Use the {@link WeatherDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
+ */
+
+/*
+Remove all excess boilerplate code which is redundant...
  */
 public class WeatherDetailsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -31,6 +36,9 @@ public class WeatherDetailsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private ForecastWeather mForecastWeather;
 
+    /*
+    This is NOT required....remove it!
+     */
     public WeatherDetailsFragment() {
         // Required empty public constructor
     }
@@ -54,6 +62,9 @@ public class WeatherDetailsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*
+        Dont use parceleable to pass data between fragments, use livedata instead..
+         */
         if (getArguments() != null) {
             mForecastWeather = getArguments().getParcelable(KEY_CITY);
         }
@@ -66,9 +77,14 @@ public class WeatherDetailsFragment extends Fragment {
         FragmentWeatherDetailsBinding detailsBinding =
                 DataBindingUtil.inflate(inflater, R.layout.fragment_weather_details, container,
                         false);
+
+        /*
+        Bind view with livedata from viewmodel, so no need to explicitly map it here...for custom
+        logic use binding adapters..
+         */
         detailsBinding.setWeather(mForecastWeather);
         String dateformat = getActivity().getResources().getString(R.string.date_format);
-        detailsBinding.setDateUtils(new DateUtils(dateformat));
+        detailsBinding.setDateUtils(new CustomDateUtils(dateformat));
         View rootView = detailsBinding.getRoot();
         ProgressBar progressBar = rootView.findViewById(R.id.icon_progress);
         ImageView imgWeatherIcon = rootView.findViewById(R.id.imgWeatherIcon);

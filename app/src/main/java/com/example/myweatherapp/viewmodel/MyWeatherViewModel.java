@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.myweatherapp.model.City;
 import com.example.myweatherapp.repository.CityRepository;
+import com.example.myweatherapp.model.City;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ import io.reactivex.schedulers.Schedulers;
  * It contains a liveData of list of cities to display weather info for. And it also
  * contains a liveData to update UI in case of error while performing network operations.
  * It contains a public method getAllCityWeather() which is invoked from the MainFragment.
- * This method is used to get all city and city weather info and update the lviedata. (why use
+ * This method is used to get all city and city weather info and update the livedata. (why use
  * postValue instead of setValue ?).
  *
  * MyWeatherViewModel does not do the actual work of making the API requests. That is done by
@@ -50,6 +50,12 @@ public class MyWeatherViewModel extends ViewModel {
     public void getAllCityWeather(String[] arrCityNames) {
         List<Observable<City>> lstObservables = mCityRepository.getCityObservables(arrCityNames);
 
+        /*
+        lstObservables is a list of Observable<City>, so the input parameter to the function should be
+        the same and not Object[]. Also the return type is incorrect as it should be maybe City instance.
+
+        And the zip operator is not required here, since the function is not really doing anything...
+         */
         Observable.zip(lstObservables, (Function<Object[], Object>) objects -> objects)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

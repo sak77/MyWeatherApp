@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myweatherapp.R;
 import com.example.myweatherapp.model.City;
 import com.example.myweatherapp.model.ForecastWeather;
-import com.example.myweatherapp.utils.DateUtils;
+import com.example.myweatherapp.utils.CustomDateUtils;
 import com.example.myweatherapp.viewmodel.MyWeatherViewModel;
 import com.example.myweatherapp.viewmodel.MyWeatherViewModelFactory;
 
@@ -29,6 +29,10 @@ import java.util.ArrayList;
  */
 public class MainFragment extends Fragment implements
         CityWeatherAdapter.onCityWeatherClickListener {
+
+    /*
+        Remove all this boilerplate code!
+     */
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -45,9 +49,16 @@ public class MainFragment extends Fragment implements
     private ArrayList<City> mCityList = new ArrayList<>();
     ProgressBar mProgressBar;
 
+    /*
+    This is NOT required! Remove it!
+     */
     public MainFragment() {
         // Required empty public constructor
     }
+
+    /*
+    Remove unwanted params..remove unwanted code in method body.
+     */
 
     /**
      * Use this factory method to create a new instance of
@@ -82,8 +93,12 @@ public class MainFragment extends Fragment implements
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        /*
+        explore if viewbinding can be used instead....reduce boilerplate code..
+         */
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         RecyclerView recCityWeather = rootView.findViewById(R.id.recCityWeather);
         recCityWeather.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -105,7 +120,8 @@ public class MainFragment extends Fragment implements
                     mCityList.addAll(cities);
                     int visibility = mCityList.size() > 0 ? View.GONE : View.VISIBLE;
                     mProgressBar.setVisibility(visibility);
-                    cityWeatherAdapter.notifyDataSetChanged();
+                    cityWeatherAdapter.notifyDataSetChanged();  //This will force re-draw the entire list...not very efficient
+                    //use listadapter with diffutils for more precise way to update data....
                 });
 
         mProgressBar = rootView.findViewById(R.id.progress_circular);
@@ -138,7 +154,7 @@ public class MainFragment extends Fragment implements
     private void setForecastDate(TextView textView) {
         //Get date format to display on screen
         String dateformat = getActivity().getResources().getString(R.string.date_format);
-        DateUtils dateUtils = new DateUtils(dateformat);
+        CustomDateUtils dateUtils = new CustomDateUtils(dateformat);
         //set forecast date
         textView.append(dateUtils.getTomorrowsDate());
     }
@@ -149,6 +165,13 @@ public class MainFragment extends Fragment implements
         showWeatherDetails(forecastWeather);
     }
 
+    /*
+    This method is not required, it is not being reused anywhere...and its being called from a
+    method which itself is just a one liner.
+
+    Also, here i have used fragments with pareleable to pass data between fragments...which is wrong
+    use livedata instead to pass data between fragments...
+     */
     private void showWeatherDetails(ForecastWeather forecastWeather) {
         WeatherDetailsFragment weatherDetailsFragment = WeatherDetailsFragment
                 .newInstance(forecastWeather);

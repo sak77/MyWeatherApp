@@ -3,7 +3,7 @@ package com.example.myweatherapp.repository;
 import com.example.myweatherapp.model.City;
 import com.example.myweatherapp.network.MetaWeatherClient;
 import com.example.myweatherapp.network.MetaWeatherService;
-import com.example.myweatherapp.utils.DateUtils;
+import com.example.myweatherapp.utils.CustomDateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +79,7 @@ public class CityRepository {
 
     private Observable<City> getWeatherObservable(City city) {
         //Get forecast date
-        DateUtils dateUtils = new DateUtils(mDateFormat);
+        CustomDateUtils dateUtils = new CustomDateUtils(mDateFormat);
         String forecastDate = dateUtils.getTomorrowsDate();
         return metaWeatherService.getTomorrowsCityWeather(city.getWoeid(), forecastDate)
                 .subscribeOn(Schedulers.io())

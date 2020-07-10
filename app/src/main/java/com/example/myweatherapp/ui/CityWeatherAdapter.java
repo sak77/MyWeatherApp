@@ -13,11 +13,17 @@ import com.example.myweatherapp.model.City;
 import com.example.myweatherapp.model.ForecastWeather;
 
 import java.util.ArrayList;
-
+/*
+Use listadapter with diffutils instead of regular recyclerview.adapter as it provides better support for
+precisely updating data. Also it reduces number of method you need to implement and less bolierplate code...
+ */
 public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.CityWeatherViewHolder> {
 
     private ArrayList<City> mCityList;
 
+    /*
+    Maybe we can pass a Consumer as a parameter, instead of using an interface?
+     */
     public interface onCityWeatherClickListener {
         void onCityWeatherClicked(ForecastWeather forecastWeather);
     }
@@ -27,7 +33,7 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
     CityWeatherAdapter(ArrayList<City> cityList,
             onCityWeatherClickListener clickListener) {
         this.mCityList = cityList;
-        this.mCityClickListener = clickListener;
+        mCityClickListener = clickListener;
     }
 
     @NonNull
@@ -36,6 +42,9 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.city_weather_list_item, parent, false);
         CityWeatherViewHolder cityWeatherViewHolder = new CityWeatherViewHolder(view);
+        /*List item onlclick listener should be defined within the viewholder...not in the adapter..
+        there should be proper separation of concerns...all data and behavior goes into viewholder
+        adapter simply binds the item layout view to the viewholder class.*/
         view.setOnClickListener(v -> {
             //send forecast weather for clicked city
             ForecastWeather forecastWeather = mCityList.get((Integer) v.getTag())
@@ -47,6 +56,10 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull CityWeatherViewHolder holder, int position) {
+
+        /*
+        Use databinding instead...use binding adapters to define logic if the binding is not straightforward...
+         */
         ForecastWeather forecastWeather =
                 mCityList.get(position).getForecastWeather();
         holder.txtMinTemp.setText("Max: " + (int) forecastWeather.getMinTemp());
@@ -61,6 +74,10 @@ public class CityWeatherAdapter extends RecyclerView.Adapter<CityWeatherAdapter.
         return mCityList.size();
     }
 
+    /*
+    The viewholder class defines the data and item click behavior...
+    it is connected to the view using the adapter...
+     */
     class CityWeatherViewHolder extends RecyclerView.ViewHolder {
 
         private TextView txtCityName;
