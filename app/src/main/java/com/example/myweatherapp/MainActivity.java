@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements
     This code does not have to be in a separte method here...its not being used anywhere else..
      */
     private void loadMainFragment() {
+        getApplication().getBaseContext();
         MainFragment mainFragment = MainFragment.newInstance("", "");
         getSupportFragmentManager().addOnBackStackChangedListener(this);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
